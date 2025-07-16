@@ -33,9 +33,13 @@ def divide(a, b):
     return a / b
 
 
+output = None
+
 while True:
 
-    first_number = int(input("what's the first number?: "))
+    if output is None:
+        first_number = int(input("what's the first number?: "))
+
     print("+\n-\n*\n/")
 
     operation = input("Pick an operation: ")
@@ -43,12 +47,21 @@ while True:
     second_number = int(input("What's the next number?: "))
 
     if operation == "+":
-        print(sum(first_number, second_number))
+        output = sum(output or first_number, second_number)
     elif operation == "-":
-        print(subtract(first_number, second_number))
+        output = subtract(output or first_number, second_number)
     elif operation == "*":
-        print(multiply(first_number, second_number))
+        output = multiply(output or first_number, second_number)
     else:
-        print(divide(first_number, second_number))
+        output = divide(output or first_number, second_number)
 
-    break
+    print(output)
+
+    decision = input(
+        f"Type 'y' to continue calculating with {output}, or type 'n' to start a new calculation: "
+    )
+
+    if decision == "y":
+        continue
+    else:
+        break
