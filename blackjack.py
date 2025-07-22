@@ -2,22 +2,23 @@ import random
 
 SCORE_LIMIT = 21
 
-card_list = [
+deck = [
     "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-    "10",
-    "J",
-    "Q",
-    "K",
+    # "3",
+    # "4",
+    # "5",
+    # "6",
+    # "7",
+    # "8",
+    # "9",
+    # "10",
+    # "J",
+    # "Q",
+    # "K",
+    "A",
 ]
 
-cards = {
+CARD_SCORE = {
     "2": 2,
     "3": 3,
     "4": 4,
@@ -30,7 +31,8 @@ cards = {
     "J": 10,
     "Q": 10,
     "K": 10,
-    # "A": [1, 11],  # As może mieć 1 lub 11
+    "A1": 1,
+    "A11": 11,  # As może mieć 1 lub 11
 }
 
 
@@ -69,18 +71,28 @@ if decision != "y":
 #! player first cards
 player_cards = []
 
-for _ in range(2):
-    player_cards.append(random.choice(card_list))
+for idx in range(2):
+    random_card = random.choice(deck)
+    if random_card == "A":
+        match input("As 1 or 11?"):
+            case "1":
+                player_cards.append("A1")
+            case "11":
+                player_cards.append("A11")
+            case _:
+                print("error")
+        # player_cards.append(random_card)
+
 
 #! Computer cards and cards score
 computer_cards = []
-for _ in range(2):
-    computer_cards.append(random.choice(card_list))
+for idx in range(2):
+    computer_cards.append(random.choice(deck))
 
 computer_card_score = 0
 
 for card in computer_cards:
-    computer_card_score += cards.get(card)
+    computer_card_score += CARD_SCORE.get(card)
 
 while True:
     #! player cards score
@@ -88,7 +100,7 @@ while True:
     card_score = 0
 
     for card in player_cards:
-        card_score += cards.get(card)
+        card_score += CARD_SCORE.get(card)
 
     if card_score > SCORE_LIMIT:
         print(f"Your final hand: {player_cards}, final score: {card_score}")
@@ -111,7 +123,7 @@ while True:
     another_card = input("Type 'y' to get another card, type 'n' to pass: ")
 
     if another_card == "y" and card_score < SCORE_LIMIT:
-        player_cards.append(random.choice(card_list))
+        player_cards.append(random.choice(deck))
     else:
         result()
         break
