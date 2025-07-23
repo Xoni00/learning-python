@@ -60,3 +60,4 @@ while game:
             hard_game()
         case _:
             print("error")
+            break
