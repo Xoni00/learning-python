@@ -43,10 +43,10 @@ for key in coffee_type:
         exit()
 
 pln = {
-    "0.10": int(input("Ile dziesięciogroszówek?")),
-    "0.20": int(input("Ile dwudziestogroszówek?")),
-    "0.50": int(input("Ile piędziesięciogroszówek?")),
-    "1": int(input("Ile złotówek?")),
+    "0.10": int(input("Ile dziesięciogroszówek? ")),
+    "0.20": int(input("Ile dwudziestogroszówek? ")),
+    "0.50": int(input("Ile piędziesięciogroszówek? ")),
+    "1": int(input("Ile złotówek? ")),
 }
 
 pln_total = pln["0.10"] * 0.1 + pln["0.20"] * 0.2 + pln["0.50"] * 0.5 + pln["1"] * 1
@@ -56,3 +56,5 @@ machine_resources["money"] = pln_total
 #!check money
 if pln_total < COFFESS[coffee]["cost"]:
     print(f"Sorry that`s not enough money. {round(pln_total,2)} was refunded ")
+else:
+    print(f"Here is your {coffee}")
