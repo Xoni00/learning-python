@@ -42,12 +42,6 @@ for key in coffee_type:
         print(f"Sorry there is not enough {key}")
         exit()
 
-#!add coins
-dziesieciogroszowka = int(input("Ile dziesięciogroszówek?"))
-dwudziestogroszowka = int(input("Ile dwudziestogroszówek?"))
-piedziesieciogroszowka = int(input("Ile piędziesięciogroszówek?"))
-zlotowka = int(input("Ile złotówek?"))
-
 pln = {
     "0.10": int(input("Ile dziesięciogroszówek?")),
     "0.20": int(input("Ile dwudziestogroszówek?")),
