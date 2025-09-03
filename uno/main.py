@@ -15,28 +15,42 @@ def cards(color, value, kind):
 
 deck = copy.deepcopy(AVAILABLE_CARDS)
 
+# random.shuffle(deck)
+
 players = []
+
+table = []
 
 
 def create_player(name):
     return {"name": name, "hand": []}
 
 
-while True:
+def first_table_card():
+    for card in deck:
+        if card["type"] == "number":
+            table.append(card)
+    print(table)
 
-    random.shuffle(deck)
 
-    qty_players = int(input("How many players? "))
+first_table_card()
 
-    for name in range(qty_players):
-        player_name = input(f"Player_{name + 1} name: ")
-        players.append(create_player(player_name))
+# while True:
 
-        for player in players:
-            for card in range(7):
-                player["hand"].append(deck[card])
-                deck.pop(card)
+#     random.shuffle(deck)
 
-    print(len(deck))
+#     qty_players = int(input("How many players? "))
 
-    break
+#     for name in range(qty_players):
+#         player_name = input(f"Player_{name + 1} name: ")
+#         players.append(create_player(player_name))
+
+#         for player in players:
+#             for card in range(7):
+#                 player["hand"].append(deck[card])
+#                 deck.pop(card)
+#     first_table_card()
+
+#     print(len(deck))
+
+#     break
