@@ -26,7 +26,7 @@ def create_player(name):
     return {"name": name, "hand": []}
 
 
-def first_table_card():
+def start_table():
     for card in deck:
         if card["type"] == "number":
             table.append(card)
@@ -34,26 +34,27 @@ def first_table_card():
         else:
             first_card = deck.pop(0)
             deck.append(first_card)
-    print(table)
+    print(create_formatted_card(table[0]))
 
 
-while True:
+def create_formatted_card(card):
+    return f"{card["color"].capitalize()} {card["value"]}"
 
-    random.shuffle(deck)
 
-    qty_players = int(input("How many players? "))
+random.shuffle(deck)
 
-    for name in range(qty_players):
-        player_name = input(f"Player_{name + 1} name: ")
-        players.append(create_player(player_name))
+qty_players = int(input("How many players? "))
 
-        for player in players:
-            for card in range(7):
-                player["hand"].append(deck[card])
-                deck.pop(card)
+for name in range(qty_players):
+    player_name = input(f"Player_{name + 1} name: ")
+    players.append(create_player(player_name))
 
-    first_table_card()
+    for player in players:
+        for card in range(7):
+            player["hand"].append(deck[card])
+            deck.pop(card)
 
-    print(players)
+start_table()
 
-    break
+
+#! podzielic widok graczy, funkcja na wyciaganie kart i rzucanie ich do table potem stworzenie logiki gry
