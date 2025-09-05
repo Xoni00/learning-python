@@ -4,22 +4,19 @@ import copy
 import random
 
 
-def cards(color, value, kind):
-    card = {
+deck = copy.deepcopy(AVAILABLE_CARDS)
+random.shuffle(deck)
+
+players = []
+table = []
+
+
+def create_card(color, value, kind):
+    return {
         "color": color,
         "value": value,
         "kind": kind,
     }
-    return card
-
-
-deck = copy.deepcopy(AVAILABLE_CARDS)
-
-random.shuffle(deck)
-
-players = []
-
-table = []
 
 
 def create_player(name):
@@ -34,7 +31,15 @@ def start_table():
         else:
             first_card = deck.pop(0)
             deck.append(first_card)
-    print(create_formatted_card(table[0]))
+
+
+def print_table():
+    formatted_cards = []
+
+    for card in table:
+        formatted_cards.append(create_formatted_card(card))
+
+    print(",".join(formatted_cards))
 
 
 def create_formatted_card(card):
@@ -55,6 +60,7 @@ for name in range(qty_players):
             deck.pop(card)
 
 start_table()
+print_table()
 
 
 #! podzielic widok graczy, funkcja na wyciaganie kart i rzucanie ich do table potem stworzenie logiki gry
