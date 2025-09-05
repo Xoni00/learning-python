@@ -37,24 +37,23 @@ def first_table_card():
     print(table)
 
 
-first_table_card()
+while True:
 
-# while True:
+    random.shuffle(deck)
 
-#     random.shuffle(deck)
+    qty_players = int(input("How many players? "))
 
-#     qty_players = int(input("How many players? "))
+    for name in range(qty_players):
+        player_name = input(f"Player_{name + 1} name: ")
+        players.append(create_player(player_name))
 
-#     for name in range(qty_players):
-#         player_name = input(f"Player_{name + 1} name: ")
-#         players.append(create_player(player_name))
+        for player in players:
+            for card in range(7):
+                player["hand"].append(deck[card])
+                deck.pop(card)
 
-#         for player in players:
-#             for card in range(7):
-#                 player["hand"].append(deck[card])
-#                 deck.pop(card)
-#     first_table_card()
+    first_table_card()
 
-#     print(len(deck))
+    print(players)
 
-#     break
+    break
