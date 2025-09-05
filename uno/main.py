@@ -15,7 +15,7 @@ def cards(color, value, kind):
 
 deck = copy.deepcopy(AVAILABLE_CARDS)
 
-# random.shuffle(deck)
+random.shuffle(deck)
 
 players = []
 
@@ -30,6 +30,10 @@ def first_table_card():
     for card in deck:
         if card["type"] == "number":
             table.append(card)
+            break
+        else:
+            first_card = deck.pop(0)
+            deck.append(first_card)
     print(table)
 
 
